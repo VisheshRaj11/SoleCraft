@@ -129,26 +129,26 @@ router.get('/google',
 );
 
 // Google OAuth callback
-// router.get('/google/callback',
-//   passport.authenticate('google', { 
-//     failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`,
-//     failureMessage: true
-//   }),
-//   (req, res) => {
-//     res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/dashboard?login=success`);
-//   }
-// );
 router.get('/google/callback',
   passport.authenticate('google', { 
     failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`,
     failureMessage: true
   }),
   (req, res) => {
-    res.redirect(
-      `${process.env.FRONTEND_URL || 'http://localhost:5173'}/profile`
-    );
+    res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/dashboard?login=success`);
   }
 );
+// router.get('/google/callback',
+//   passport.authenticate('google', { 
+//     failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=auth_failed`,
+//     failureMessage: true
+//   }),
+//   (req, res) => {
+//     res.redirect(
+//       `${process.env.FRONTEND_URL || 'http://localhost:5173'}/profile`
+//     );
+//   }
+// );
 
 
 // ========== REGISTRATION FLOW ==========
