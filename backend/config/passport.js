@@ -1,6 +1,8 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from '../models/User.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 console.log("PASSPORT CLIENT ID:", process.env.GOOGLE_CLIENT_ID);
 // No need to connect MongoDB here - it will be connected in server.js
