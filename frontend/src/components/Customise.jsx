@@ -14,7 +14,7 @@ const CustomiseGallery = () => {
   useEffect(() => {
     const fetchShoes = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/custom/get-shoes');
+        const response = await axios.get('/api/custom/get-shoes');
         const data = response.data.success ? response.data.data : response.data;
         setShoes(data);
       } catch (error) {

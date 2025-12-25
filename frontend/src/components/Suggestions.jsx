@@ -34,7 +34,7 @@ const Suggestion = () => {
     setLoading(true);
     setSaveSuccess(false);
     try {
-      const res = await fetch('http://localhost:5000/api/shoe/generate-shoe', {
+      const res = await fetch('/api/shoe/generate-shoe', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt }),
@@ -65,7 +65,7 @@ const Suggestion = () => {
       formData.append('rating', (Math.random() * (5 - 4) + 4).toFixed(1)); // Random rating between 4.0-5.0
 
       // 3. Post to your backend endpoint
-      const res = await axios.post('http://localhost:5000/api/custom/save-design', formData, {
+      const res = await axios.post('/api/custom/save-design', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
 

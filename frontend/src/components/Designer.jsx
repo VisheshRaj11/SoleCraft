@@ -137,7 +137,7 @@ export default function ShoeConfigurator() {
       formData.append("rating", rating);
 
       const res = await axios.post(
-        "http://localhost:5000/api/custom/save-design",
+        "/api/custom/save-design",
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

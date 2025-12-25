@@ -36,7 +36,7 @@ const Profile = ({ user, updateUser }) => {
         reader.readAsDataURL(file);
       });
       const base64Image = await base64Promise;
-      const response = await fetch('http://localhost:5000/api/profile/upload-profile-picture', {
+      const response = await fetch('/api/profile/upload-profile-picture', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -66,13 +66,13 @@ const Profile = ({ user, updateUser }) => {
     const fetchDesigns = async () => {
       setIsLoading(true);
       try {
-        const authRes = await fetch('http://localhost:5000/api/auth/user', { credentials: 'include' });
+        const authRes = await fetch('/api/auth/user', { credentials: 'include' });
         if (authRes.ok) {
           const authData = await authRes.json();
           if (authData.success && authData.user) localStorage.setItem('user', JSON.stringify(authData.user));
         }
         let apiDesigns = [];
-        const apiRes = await fetch('http://localhost:5000/api/designs/my-designs', { credentials: 'include' });
+        const apiRes = await fetch('/api/designs/my-designs', { credentials: 'include' });
         if (apiRes.ok) {
           const apiData = await apiRes.json();
           if (apiData.success && Array.isArray(apiData.designs)) {
@@ -158,7 +158,7 @@ const Profile = ({ user, updateUser }) => {
 
   const handleEditProfile = useCallback(async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/auth/update-profile', {
+      const res = await fetch('/api/auth/update-profile', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -182,7 +182,7 @@ const Profile = ({ user, updateUser }) => {
     try {
       const formData = new FormData();
       formData.append('file', file);
-      const response = await fetch('http://localhost:5000/api/profile/upload-profile-picture', { method: 'POST', body: formData, credentials: 'include' });
+      const response = await fetch('/api/profile/upload-profile-picture', { method: 'POST', body: formData, credentials: 'include' });
       if (!response.ok) {
         let errorMsg = `Upload failed (${response.status})`;
         try { const errorData = await response.json(); errorMsg = errorData?.error || errorMsg; } catch (e) {}
@@ -204,7 +204,7 @@ const Profile = ({ user, updateUser }) => {
     if (passwordData.newPassword !== passwordData.confirmPassword) { showNotificationMessage('Passwords do not match', 'error'); return; }
     if (passwordData.newPassword.length < 6) { showNotificationMessage('Min 6 characters', 'error'); return; }
     try {
-      await axios.post('http://localhost:5000/api/auth/change-password', { currentPassword: passwordData.currentPassword, newPassword: passwordData.newPassword }, { withCredentials: true });
+      await axios.post('/api/auth/change-password', { currentPassword: passwordData.currentPassword, newPassword: passwordData.newPassword }, { withCredentials: true });
       showNotificationMessage('Password changed!', 'success');
       setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
       setShowPasswordFields(false);
@@ -223,7 +223,7 @@ const Profile = ({ user, updateUser }) => {
 
   const handleLogout = useCallback(async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
+      await axios.post('/api/auth/logout', {}, { withCredentials: true });
       window.location.href = '/login';
     } catch (err) { showNotificationMessage('Failed to logout', 'error'); }
   }, [showNotificationMessage]);
