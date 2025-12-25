@@ -2,12 +2,13 @@ import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import User from '../models/User.js';
 
-
+console.log("PASSPORT CLIENT ID:", process.env.GOOGLE_CLIENT_ID);
 // No need to connect MongoDB here - it will be connected in server.js
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL: '/api/auth/google/callback', // Updated to match your routes
+    callbackURL: process.env.GOOGLE_CALLBACK_URL,
+    // callbackURL: '/api/auth/google/callback', // Updated to match your routes
     scope: ['profile', 'email']
   },
   async (accessToken, refreshToken, profile, done) => {
