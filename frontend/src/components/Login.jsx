@@ -18,7 +18,7 @@ const Login = ({ onLoginSuccess }) => {
   const [errors, setErrors] = useState({});
 
   const handleGoogleLogin = () => {
-    window.location.href = '/api/auth/google';
+    window.location.href = '  "https://solecraft-backend.onrender.com/api/auth/google"';
   };
 
   const handleLogin = async (e) => {

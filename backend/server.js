@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CORS
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: ['http://localhost:5173','https://sole-craft-eight.vercel.app'],
   credentials: true
 }));
 
